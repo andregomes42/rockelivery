@@ -18,7 +18,7 @@ defmodule RockeliveryWeb.ErrorView do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
-  def render("bad_request.json", %{errors: %Changeset{} = changeset}) do
+  def render("error.json", %{errors: %Changeset{} = changeset}) do
     %{errors: translate_errors(changeset)}
   end
 

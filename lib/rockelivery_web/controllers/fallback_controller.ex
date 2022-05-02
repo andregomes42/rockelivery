@@ -3,10 +3,10 @@ defmodule RockeliveryWeb.FallbackController do
 
   alias RockeliveryWeb.ErrorView
 
-  def call(conn, {:error, errors}) do
+  def call(conn, {:error, %{status: status, errors: errors}}) do
     conn
-    |> put_status(:bad_request)
+    |> put_status(status)
     |> put_view(ErrorView)
-    |> render("bad_request.json", errors: errors)
+    |> render("error.json", errors: errors)
   end
 end
