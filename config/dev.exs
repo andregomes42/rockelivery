@@ -4,7 +4,7 @@ use Mix.Config
 config :rockelivery, Rockelivery.Repo,
   username: "inciclemaster",
   password: "incicle-pass",
-  database: "postgres",
+  database: "rockelivery",
   hostname: "localhost",
   port: "55432",
   show_sensitive_data_on_connection_error: true,
