@@ -1,18 +1,18 @@
-defmodule Rockelivery.Users.Get do
+defmodule Rockelivery.Users.Destroy do
   alias Ecto.UUID
   alias Rockelivery.{Repo, User}
 
-  def by_id(id) do
+  def find(id) do
     case UUID.cast(id) do
       :error -> {:error, %{status: :not_found, response: "Resource not found"}}
-      {:ok, uuid} -> get(uuid)
+      {:ok, uuid} -> destroy(uuid)
     end
   end
 
-  defp get(id) do
+  defp destroy(id) do
     case Repo.get(User, id) do
       nil -> {:error, %{status: :not_found, response: "Resource not found"}}
-      user -> {:ok, user}
+      user -> Repo.delete(user)
     end
   end
 end
