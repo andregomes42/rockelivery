@@ -2,7 +2,7 @@ defmodule Rockelivery.Users.Destroy do
   alias Ecto.UUID
   alias Rockelivery.{Repo, User, Error}
 
-  def find(id) do
+  def call(id) do
     case UUID.cast(id) do
       :error -> Error.invalid_id_format()
       {:ok, uuid} -> destroy(uuid)
