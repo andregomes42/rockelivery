@@ -1,5 +1,5 @@
 defmodule Rockelivery.Users.Create do
-  alias Rockelivery.{Repo, User}
+  alias Rockelivery.{Repo, User, Error}
 
   def call(params) do
     User.changeset(params)
@@ -10,6 +10,6 @@ defmodule Rockelivery.Users.Create do
   defp handle_response({:ok, %User{}} = response), do: response
 
   defp handle_response({:error, errors}) do
-    {:error, %{status: :bad_request, errors: errors}}
+    Error.build(:bad_request, errors)
   end
 end
