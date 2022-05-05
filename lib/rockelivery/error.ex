@@ -1,4 +1,6 @@
 defmodule Rockelivery.Error do
+  alias Rockelivery.User
+
   @keys [:status, :response]
 
   @enforce_keys @keys
@@ -15,7 +17,11 @@ defmodule Rockelivery.Error do
     }
   end
 
-  def invalid_id_format(), do: build(:bad_request, "Invalid id format")
-
   def resource_not_found(), do: build(:not_found, "Resource not found")
+
+  def handle_response({:ok, %User{}} = response), do: response
+
+  def handle_response({:error, errors}) do
+    build(:bad_request, errors)
+  end
 end

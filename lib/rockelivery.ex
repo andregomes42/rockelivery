@@ -7,7 +7,7 @@ defmodule Rockelivery do
 
   defdelegate create_user(params), to: UserCreate, as: :call
 
-  defdelegate find_user(id), to: UserShow, as: :find
+  defdelegate find_user(id), to: UserShow, as: :call
 
   defdelegate update_user(id), to: UserUpdate, as: :call
 
