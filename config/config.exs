@@ -12,7 +12,8 @@ config :rockelivery,
 
 config :rockelivery, Rockelivery.Repo,
   migration_primary_key: [type: :binary_id],
-  migration_foreign_key: [type: :binary_id]
+  migration_foreign_key: [type: :binary_id],
+  pool: Ecto.Adapters.SQL.Sandbox
 
 # Configures the endpoint
 config :rockelivery, RockeliveryWeb.Endpoint,
