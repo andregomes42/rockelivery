@@ -52,7 +52,9 @@ defmodule Rockelivery.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:pbkdf2_elixir, "~> 1.3"},
-      {:excoveralls, "~> 0.10", only: :test}
+      {:excoveralls, "~> 0.10", only: :test},
+      {:ex_machina, "~> 2.5.0"},
+      {:faker, "~> 0.17"}
     ]
   end
 
@@ -70,4 +72,9 @@ defmodule Rockelivery.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
+
+  # This makes sure your factory and any other modules in test/support are compiled
+  # when in the test environment.
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end
