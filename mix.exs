@@ -56,7 +56,8 @@ defmodule Rockelivery.MixProject do
       {:ex_machina, "~> 2.5.0"},
       {:faker, "~> 0.17"},
       {:tesla, "~> 1.4"},
-      {:hackney, "~> 1.17"}
+      {:hackney, "~> 1.17"},
+      {:guardian, "~> 2.0"}
     ]
   end
 

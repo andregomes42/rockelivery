@@ -15,6 +15,10 @@ config :rockelivery, Rockelivery.Repo,
   migration_foreign_key: [type: :binary_id],
   pool: Ecto.Adapters.SQL.Sandbox
 
+config :rockelivery, RockeliveryWeb.Auth.Guardian,
+  issuer: "rockelivery",
+  secret_key: "UV4ZXw4lEw8G8gLyb7Xkokx6jq24q2b4Qb1ZpmJFVNEaOGlU6AV7oYJP18GWg+0k"
+
 # Configures the endpoint
 config :rockelivery, RockeliveryWeb.Endpoint,
   url: [host: "localhost"],
