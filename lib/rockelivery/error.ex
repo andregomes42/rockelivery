@@ -19,7 +19,7 @@ defmodule Rockelivery.Error do
 
   def resource_not_found(), do: build(:not_found, "Resource not found")
 
-  def handle_response({:ok, %User{}} = response), do: response
+  def handle_response({:ok, %{}} = response), do: response
 
   def handle_response({:error, errors}) do
     build(:bad_request, errors)
