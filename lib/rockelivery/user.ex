@@ -39,6 +39,8 @@ defmodule Rockelivery.User do
     |> password_hash()
   end
 
+  def build(changeset), do: apply_action(changeset, :create)
+
   defp password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
     change(changeset, Pbkdf2.add_hash(password))
   end
