@@ -20,7 +20,7 @@ defmodule Rockelivery.Orders.ReportRunner do
 
   @impl true
   def handle_info(:generate, state) do
-    Logger.info("Report runner started...")
+    Logger.info("Report Runner started...")
 
     Report.create()
     schedule_report_generation()
