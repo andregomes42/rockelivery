@@ -14,9 +14,9 @@ config :rockelivery, Rockelivery.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-# Configure the database for Github Actions
+# Configure the database for GitHub Actions
 if System.get_env("GITHUB_ACTIONS") do
-  config :app, Rockelivery.Repo
+  config :rockelivery, Rockelivery.Repo,
     username: "postgres",
     password: "postgres"
 end
