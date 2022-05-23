@@ -12,7 +12,16 @@ config :rockelivery,
 
 config :rockelivery, Rockelivery.Repo,
   migration_primary_key: [type: :binary_id],
-  migration_foreign_key: [type: :binary_id]
+  migration_foreign_key: [type: :binary_id],
+  pool: Ecto.Adapters.SQL.Sandbox
+
+config :rockelivery, RockeliveryWeb.Auth.Guardian,
+  issuer: "rockelivery",
+  secret_key: "UV4ZXw4lEw8G8gLyb7Xkokx6jq24q2b4Qb1ZpmJFVNEaOGlU6AV7oYJP18GWg+0k"
+
+config :rockelivery, RockeliveryWeb.Auth.Pipeline,
+  module: RockeliveryWeb.Auth.Guardian,
+  error_handler: RockeliveryWeb.Auth.ErrorHandler
 
 # Configures the endpoint
 config :rockelivery, RockeliveryWeb.Endpoint,

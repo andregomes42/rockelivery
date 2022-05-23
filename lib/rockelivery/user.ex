@@ -4,6 +4,7 @@ defmodule Rockelivery.User do
   import Ecto.Changeset
 
   alias Ecto.Changeset
+  alias Rockelivery.Order
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :email, :cpf, :cep, :address, :age, :password]
@@ -18,6 +19,8 @@ defmodule Rockelivery.User do
     field :age, :integer
     field :password, :string, virtual: true
     field :password_hash, :string
+
+    has_many :orders, Order
 
     timestamps()
   end
@@ -35,6 +38,8 @@ defmodule Rockelivery.User do
     |> unique_constraint([:cpf])
     |> password_hash()
   end
+
+  def build(changeset), do: apply_action(changeset, :create)
 
   defp password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
     change(changeset, Pbkdf2.add_hash(password))

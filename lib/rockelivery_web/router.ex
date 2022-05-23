@@ -8,10 +8,26 @@ defmodule RockeliveryWeb.Router do
     plug UUIDChecker
   end
 
-  scope "/api", RockeliveryWeb do
-    pipe_through :api
+  pipeline :auth do
+    plug RockeliveryWeb.Auth.Pipeline
+  end
 
-    resources "/users", UsersController, except: [:index, :new, :edit]
+  scope "/api", RockeliveryWeb do
+    pipe_through [:api, :auth]
+
+    resources "/users", UsersController, except: [:index, :new, :edit, :create]
+
+    post "/items", ItemsController, :create
+
+    post "/orders", OrdersController, :create
+  end
+
+  scope "/api", RockeliveryWeb do
+    pipe_through [:api]
+
+    post "/login", UsersController, :login
+
+    post "/users", UsersController, :create
   end
 
   # Enables LiveDashboard only for development
